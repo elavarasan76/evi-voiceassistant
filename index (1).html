@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Assistant</title>
+<style>
+  /* Global styles */
+  body {
+    background-color: black;
+    overflow: hidden;
+  }
+
+  /* Square Element */
+  .square {
+    width: 300px; /* Adjust width */
+    height: 300px; /* Adjust height */
+    margin: 50px auto; /* Center horizontally */
+    position: relative;
+  }
+
+  .square span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#6b72ff00 50%, #000dff3b 40%);
+    box-shadow: 0 0 50px rgb(25, 0, 255), inset 0 0 50px rgb(25, 0, 255);
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    transition: 0.5s;
+  }
+
+  .square span:nth-child(1) {
+    animation: animate1 6s linear infinite;
+  }
+
+  .square span:nth-child(2) {
+    animation: animate2 4s linear infinite;
+  }
+
+  .square span:nth-child(3) {
+    animation: animate3 8s linear infinite;
+  }
+
+  @keyframes animate1 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes animate2 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes animate3 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Text Input Field */
+  #TextInput {
+    width: 300px; /* Adjust width */
+    margin: 20px auto; /* Center horizontally */
+    text-align: center;
+  }
+
+  .input-field {
+    background-color: #181818a8;
+    border: none;
+    width: 70%; /* Adjust width */
+    padding: 8px;
+    border-radius: 8px;
+    color: white;
+    font-family: cursive;
+    margin-right: 5px; /* Adjust spacing */
+  }
+
+  .glow-on-hover {
+    width: 80px; /* Adjust width */
+    height: 40px; /* Adjust height */
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0px;
+  }
+
+  .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .glow-on-hover:active {
+    color: #181818a8
+  }
+
+  .glow-on-hover:active:after {
+    background: transparent;
+  }
+
+  .glow-on-hover:hover:before {
+    opacity: 1;
+  }
+
+  .glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  @keyframes glowing {
+    0% {
+      background-position: 0 0;
+    }
+
+    50% {
+      background-position: 400% 0;
+    }
+
+    100% {
+      background-position: 0 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Square Element -->
+  <div class="square">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Text Input Field -->
+  <div id="TextInput">
+    <input class="input-field" type="text" placeholder="Type your message...">
+    <button class="glow-on-hover" type="button">Send</button>
+  </div>
+
+  <!-- Script for Slider -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+    // Slider Script
+    $(function () {
+      $("#slider-range").slider({
+        range: false,
+        min: 20,
+        max: 500,
+        value: 280,
+        slide: function (event, ui) {
+          console.log(ui.value);
+          sphereRad = ui.value;
+        }
+      });
+    });
+
+    $(function () {
+      $("#slider-test").slider({
+        range: false,
+        min: 1.0,
+        max: 2.0,
+        value: 1,
+        step: 0.01,
+        slide: function (event, ui) {
+          radius_sp = ui.value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
